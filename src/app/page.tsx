@@ -1,6 +1,8 @@
+import { onBoardUser } from "@/modules/auth/actions";
 import { UserButton } from "@clerk/nextjs";
 
-export default function HomePage() {
+export default async function HomePage() {
+  await onBoardUser();
   return (
     <div>
       <UserButton />
