@@ -13,6 +13,12 @@ enum UserRole {
   USER
 }
 
+enum Difficulty {
+  EASY
+  MEDIUM
+  HARD
+}
+
 model User {
   id      String @id @default(cuid())
   clerkId String @unique @map("clerk_id")
@@ -22,13 +28,39 @@ model User {
   email    String   @unique
   role     UserRole @default(USER)
 
+  // Relations
+  problems Problem[]
+
   // Timestamps
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
   // Performance 
   @@index([email, clerkId])
-
   // To have a plural and lowercase table name
   @@map("users")
+}
+
+model Problem {
+  id          String     @id @default(cuid())
+  title       String
+  description String
+  difficulty  Difficulty
+  tags        String[]
+
+  userId      String   @map("user_id")
+  examples    Json
+  constraints String[]
+  editorial   String
+
+  testCases          Json @map("test_cases")
+  codeSnippets       Json @map("code_snippets")
+  referenceSolutions Json @map("reference_solutions")
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("problems")
 }

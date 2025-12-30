@@ -1,0 +1,38 @@
+# Dependencies
+node_modules
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Next.js Build Artifacts
+.git
+.git
+.next
+out
+build
+dist
+
+# Prisma Generated Client
+# (Important: Prisma handles its own formatting)
+prisma/
+
+# Static Assets (Images/Icons/Fonts)
+public/
+**/*.svg
+**/*.png
+**/*.jpg
+**/*.ico
+
+# Environment & Logs
+.env
+.env.*
+*.log
+npm-debug.log*
+
+# Other Configs & Tooling
+.husky
+.vscode
+coverage
+.nyc_output
+playwright-report
+test-results
